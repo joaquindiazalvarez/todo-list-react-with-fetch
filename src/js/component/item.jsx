@@ -4,7 +4,7 @@ export function Item(props) {
 	const [show, setShow] = useState(true);
 	if (show === true) {
 		return (
-			<div id="item">
+			<div className="item">
 				<span>
 					<div className="text">{props.name}</div>
 					<div

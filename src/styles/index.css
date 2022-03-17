@@ -10,7 +10,7 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
-#item span {
+.item span {
     display: flex;
     background-color: rgb(234, 255, 201);
     border-radius: 30px;
@@ -42,8 +42,13 @@ button {
     background-color: rgb(234, 255, 201);
     margin-left: 3px;
 }
-#item{
+.item{
     background: rgb(234, 255, 201);
     width: 200px;
     border-radius: 30px;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+#left{
+    color: gray;
 }

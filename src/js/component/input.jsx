@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Item } from "./item.jsx";
-
+import { ItemLeft } from "./itemLeft.jsx";
 export function Input() {
 	const [variable, changeVariable] = useState("0");
 	const [list, addToList] = useState([]);
+	var len = list.length;
 	useEffect(() => {
-		console.log(list);
-	}, [variable]);
+		len = list.length;
+	}, [list]);
 	return (
 		<div>
 			<input
@@ -22,11 +23,12 @@ export function Input() {
 				}}>
 				Add
 			</button>
-			<div className="items">
-				{list.map((value) => {
-					return <Item name={value} />;
+			<div>
+				{list.map((value, key) => {
+					return <Item name={value} key={key} />;
 				})}
 			</div>
+			<div>{len === 0 ? null : <ItemLeft left={len} />}</div>
 		</div>
 	);
 }
