@@ -10,3 +10,40 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+span {
+    display: flex;
+    background-color: rgb(234, 255, 201);
+    border-radius: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+body {
+    background: rgb(234, 240, 201);
+}
+input {
+    width : 200px;
+    border-radius: 30px;
+    padding-left: 15px;
+    border: 1px solid white;
+}
+input:focus{
+    outline: none;
+}
+span .text{
+    width : 250px;
+}
+button {
+    width: 50px;
+    border-radius: 30px;
+    background: rgb(234, 240, 201);
+    border-color: green;
+    color: green;
+    border: none;
+    background-color: rgb(234, 255, 201);
+    margin-left: 3px;
+}
+#item{
+    background: rgb(234, 255, 201);
+    width: 200px;
+    border-radius: 30px;
+}
