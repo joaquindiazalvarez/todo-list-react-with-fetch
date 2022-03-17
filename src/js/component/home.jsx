@@ -7,15 +7,16 @@ import { Footer } from "./footer.jsx";
 const Home = () => {
 	return (
 		<div>
-			<h1 className="text-center mt-5">Todo List with React</h1>
+			<h1 className="text-center mt-5 mb-4">Todo List with React</h1>
 			<div className="container">
 				<div className="row">
 					<div className="col-3"></div>
-					<div className="col-6 m-auto">
+					<div className="col-6 d-flex justify-content-center">
 						<Input />
 					</div>
 				</div>
 			</div>
+			<Footer />
 		</div>
 	);
 };

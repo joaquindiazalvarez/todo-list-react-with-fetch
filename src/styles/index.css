@@ -10,7 +10,7 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
-span {
+#item span {
     display: flex;
     background-color: rgb(234, 255, 201);
     border-radius: 30px;
