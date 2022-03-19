@@ -2,33 +2,48 @@ import React, { useState, useEffect } from "react";
 import { Item } from "./item.jsx";
 import { ItemLeft } from "./itemLeft.jsx";
 export function Input() {
-	const [variable, changeVariable] = useState("0");
-	const [list, addToList] = useState([]);
-	var len = list.length;
+	const [data, setData] = useState([]);
+	const [left, setLeft] = useState(0);
 	useEffect(() => {
-		len = list.length;
-	}, [list]);
+		console.log(data);
+		fetch("https://assets.breatheco.de/apis/fake/todos/user/joaquindiaz")
+			.then((response) => response.json())
+			.then((result) => {
+				console.log(result);
+				setData(result);
+			});
+	}, []);
+	function deleteItem(name) {
+		setData(
+			data.filter((value) => {
+				return value != name;
+			})
+		);
+		console.log("hola");
+		console.log(data);
+		setLeft(data.length);
+	}
 	return (
 		<div>
-			<input
-				type="text"
-				placeholder="Insert to do"
-				onChange={(e) => {
-					changeVariable(e.target.value);
-				}}></input>
 			<button
 				type="button"
 				onClick={() => {
-					addToList([...list, variable]);
+					//getFetch();
 				}}>
-				Add
+				Actualizar
 			</button>
 			<div>
-				{list.map((value, key) => {
-					return <Item name={value} key={key} />;
+				{data?.map((value, key) => {
+					return (
+						<Item
+							name={value.label}
+							key={key}
+							deleteFunction={deleteItem()}
+						/>
+					);
 				})}
 			</div>
-			<div>{len === 0 ? null : <ItemLeft left={len} />}</div>
+			{/* <div>{left === 0 ? null : <ItemLeft left={left} />}</div> */}
 		</div>
 	);
 }
