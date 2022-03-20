@@ -5,18 +5,30 @@ export function Input() {
 	const [data, setData] = useState([]);
 	const [left, setLeft] = useState(0);
 	useEffect(() => {
-		console.log(data);
+		setLeft(data.length);
+		getFetch();
+
+		// fetch("https://assets.breatheco.de/apis/fake/todos/user/joaquindiaz")
+		// 	.then((response) => response.json())
+		// 	.then((result) => {
+		// 		console.log(result);
+		// 		setData(result);
+		// 	});
+		// 	.catch(error => console.log('error', error));
+	}, []);
+	function getFetch() {
 		fetch("https://assets.breatheco.de/apis/fake/todos/user/joaquindiaz")
 			.then((response) => response.json())
 			.then((result) => {
 				console.log(result);
 				setData(result);
-			});
-	}, []);
+			})
+			.catch((error) => console.log("error", error));
+	}
 	function deleteItem(name) {
 		setData(
 			data.filter((value) => {
-				return value != name;
+				return value.label != name;
 			})
 		);
 		console.log("hola");
@@ -28,7 +40,7 @@ export function Input() {
 			<button
 				type="button"
 				onClick={() => {
-					//getFetch();
+					getFetch();
 				}}>
 				Actualizar
 			</button>
@@ -38,12 +50,12 @@ export function Input() {
 						<Item
 							name={value.label}
 							key={key}
-							deleteFunction={deleteItem()}
+							deleteFunction={deleteItem}
 						/>
 					);
 				})}
 			</div>
-			{/* <div>{left === 0 ? null : <ItemLeft left={left} />}</div> */}
+			<div>{left === 0 ? null : <ItemLeft left={left} />}</div>
 		</div>
 	);
 }
