@@ -8,9 +8,14 @@ export function ToDo() {
 	const [variable, changeVariable] = useState("");
 	useEffect(() => {
 		getFetch();
+		setLeft(data?.length);
 	}, []);
 	useEffect(() => {
 		putFetch();
+		setLeft(data?.length);
+		console.log(data);
+
+		console.log(left);
 	}, [data]);
 	function getFetch() {
 		fetch("https://assets.breatheco.de/apis/fake/todos/user/joaquindiaz")
@@ -41,17 +46,11 @@ export function ToDo() {
 			.catch((error) => console.log("error", error));
 	}
 	function deleteItem(key, name) {
-		setLeft(data.length);
-		// console.log(data[key]);
-		// setData(data.splice(key, 1));
-		// setData([...data, { label: name, done: true }]);
 		setData(
 			data.filter((value, index) => {
-				console.log(index, key);
-				return name != value.label && index != key;
+				return index != key;
 			})
 		);
-		console.log(data);
 	}
 	function addItem() {
 		setData([...data, { label: variable, done: false }]);

@@ -17,13 +17,20 @@
     padding-left: 15px;
     padding-right: 15px;
 }
-.item-done span {
+.item span {
+    display: flex;
+    background-color: rgb(227, 241, 165);
+    border-radius: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+/* .item-done span {
     display: flex;
     background-color: rgb(234, 255, 201);
     border-radius: 30px;
     padding-left: 15px;
     padding-right: 15px;
-}
+} */
 body {
     background: rgb(234, 240, 201);
 }
@@ -56,13 +63,20 @@ button {
     margin-top:5px;
     margin-bottom:5px;
 }
-.item-done{
-    background: rgb(234, 255, 201);
+.item{
+    background: rgb(220, 221, 161);
     width: 230px;
     border-radius: 30px;
     margin-top:5px;
     margin-bottom:5px;
 }
+/* .item-done{
+    background: rgb(234, 255, 201);
+    width: 230px;
+    border-radius: 30px;
+    margin-top:5px;
+    margin-bottom:5px;
+} */
 #left{
     color: gray;
 }
