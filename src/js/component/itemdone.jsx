@@ -1,14 +1,13 @@
 import React from "react";
-
-export function Item(props) {
+export function ItemDone(props) {
 	return (
-		<div className="item">
+		<div className="item-done">
 			<span>
 				<div className="text">{props.name}</div>
 				<div
 					onClick={() => {
 						console.log(props.name);
-						props.deleteFunction(props.name);
+						props.deleteFunction(props.key);
 					}}>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
