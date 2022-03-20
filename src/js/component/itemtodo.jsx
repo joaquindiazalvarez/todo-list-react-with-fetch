@@ -3,11 +3,12 @@ export function ItemToDo(props) {
 	return (
 		<div className="item-todo">
 			<span>
-				<div className="text">{props.name}</div>
+				<div className="text" key={props.index}>
+					{props.name}
+				</div>
 				<div
 					onClick={() => {
-						console.log(props.name);
-						props.deleteFunction(props.key, props.name);
+						props.deleteFunction(props.index, props.name);
 					}}>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"

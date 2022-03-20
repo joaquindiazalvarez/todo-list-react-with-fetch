@@ -46,11 +46,11 @@ export function Done(props) {
 			.then((result) => console.log(result))
 			.catch((error) => console.log("error", error));
 	}
-	function deleteItem(name) {
+	function deleteItem(key) {
 		setLeft(data.length);
 		setData(
-			data.filter((value) => {
-				return value.label != name;
+			data.filter((value, index) => {
+				return index != key;
 			})
 		);
 		console.log(data);
@@ -62,12 +62,12 @@ export function Done(props) {
 	return (
 		<div>
 			<div>
-				{data?.map((value, key) => {
+				{data?.map((value, index) => {
 					if (value.done == true) {
 						return (
 							<ItemDone
 								name={value.label}
-								key={key}
+								key={index}
 								deleteFunction={deleteItem}
 							/>
 						);

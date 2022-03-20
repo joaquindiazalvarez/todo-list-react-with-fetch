@@ -2,17 +2,14 @@ import React, { useState, useEffect } from "react";
 import { ItemToDo } from "./itemtodo.jsx";
 import { ItemLeft } from "./itemLeft.jsx";
 
-export function ToDo(props) {
+export function ToDo() {
 	const [data, setData] = useState([]);
 	const [left, setLeft] = useState(data.length);
 	const [variable, changeVariable] = useState("");
 	useEffect(() => {
-		setLeft(data.length);
 		getFetch();
-		console.log(data.length);
 	}, []);
 	useEffect(() => {
-		props.stateChange();
 		putFetch();
 	}, [data]);
 	function getFetch() {
@@ -45,10 +42,15 @@ export function ToDo(props) {
 	}
 	function deleteItem(key, name) {
 		setLeft(data.length);
-		console.log(data[key]);
-		setData(data.splice(key, 1));
-		setData([...data, { label: name, done: true }]);
-
+		// console.log(data[key]);
+		// setData(data.splice(key, 1));
+		// setData([...data, { label: name, done: true }]);
+		setData(
+			data.filter((value, index) => {
+				console.log(index, key);
+				return name != value.label && index != key;
+			})
+		);
 		console.log(data);
 	}
 	function addItem() {
@@ -66,15 +68,15 @@ export function ToDo(props) {
 				}}></input>
 			<div>
 				{data?.map((value, index) => {
-					if (value.done == false) {
-						return (
+					return (
+						<li key={index}>
 							<ItemToDo
 								name={value.label}
-								key={index}
+								index={index}
 								deleteFunction={deleteItem}
 							/>
-						);
-					}
+						</li>
+					);
 				})}
 			</div>
 			<div>{left === 0 ? null : <ItemLeft left={left} />}</div>

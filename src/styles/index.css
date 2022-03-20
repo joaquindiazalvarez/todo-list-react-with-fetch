@@ -66,3 +66,6 @@ button {
 #left{
     color: gray;
 }
+li{
+    list-style-type: none;
+}
