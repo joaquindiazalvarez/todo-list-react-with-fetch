@@ -8,15 +8,24 @@ export function ToDo() {
 	const [variable, changeVariable] = useState("");
 	useEffect(() => {
 		getFetch();
-		setLeft(data?.length);
+		setLeft(calculateLeft());
 	}, []);
 	useEffect(() => {
-		putFetch();
-		setLeft(data?.length);
-		console.log(data);
-
-		console.log(left);
+		if (data.length > 0) {
+			putFetch();
+			setLeft(calculateLeft());
+			console.log(data);
+		}
 	}, [data]);
+	function calculateLeft() {
+		var notDone = 0;
+		for (var i = 0; i < data.length; i++) {
+			if (data[i].done === false) {
+				notDone++;
+			}
+		}
+		return notDone;
+	}
 	function getFetch() {
 		fetch("https://assets.breatheco.de/apis/fake/todos/user/joaquindiaz")
 			.then((response) => response.json())
@@ -43,14 +52,17 @@ export function ToDo() {
 		)
 			.then((response) => response.json())
 			.then((result) => console.log(result))
-			.catch((error) => console.log("error", error));
+			.catch((error) => console.log("ERROR DE PUT", error));
 	}
 	function deleteItem(key, name) {
-		setData(
-			data.filter((value, index) => {
-				return index != key;
-			})
-		);
+		// setData(
+		// 	data.filter((value, index) => {
+		// 		return index != key;
+		// 	})
+		//);
+		let dataCopy = [...data];
+		dataCopy[key].done = true;
+		setData(dataCopy);
 	}
 	function addItem() {
 		setData([...data, { label: variable, done: false }]);
@@ -69,11 +81,13 @@ export function ToDo() {
 				{data?.map((value, index) => {
 					return (
 						<li key={index}>
-							<ItemToDo
-								name={value.label}
-								index={index}
-								deleteFunction={deleteItem}
-							/>
+							{value["done"] === false && (
+								<ItemToDo
+									name={value.label}
+									index={index}
+									deleteFunction={deleteItem}
+								/>
+							)}
 						</li>
 					);
 				})}
